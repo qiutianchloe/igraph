@@ -51,7 +51,7 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t *Data, size_t Size) {
 
     if (! igraph_create(&graph, &edges, 0, IGRAPH_UNDIRECTED)) {
         igraph_integer_t conn;
-        igraph_st_vertex_connectivity(graph, &conn, 0, 1, IGRAPH_VCONN_NEI_ERROR);
+        igraph_st_vertex_connectivity(&graph, &conn, 0, 1, IGRAPH_VCONN_NEI_ERROR);
 
         igraph_destroy(&graph);
     }
