@@ -59,7 +59,7 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t *Data, size_t Size) {
     if (! igraph_create(&graph, &edges, 0, IGRAPH_DIRECTED)) {
 
         double value; 
-        igraph_maxflow(&g, &value, &flow, &cut, &partition, &partition2, 0, 2, NULL, NULL);
+        igraph_maxflow(&graph, &value, &flow, &cut, &partition, &partition2, 0, 2, NULL, NULL);
 
         igraph_destroy(&graph);
     }
