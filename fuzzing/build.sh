@@ -15,6 +15,8 @@ mkdir build && cd build
 cmake .. -DCMAKE_INSTALL_PREFIX=$DEPS_PATH -DBUILD_SHARED_LIBS=OFF -DLIBXML2_WITH_ICU=OFF -DLIBXML2_WITH_PYTHON=OFF -DLIBXML2_WITH_TESTS=OFF -DLIBXML2_WITH_ZLIB=OFF -DLIBXML2_WITH_LZMA=OFF -DLIBXML2_WITH_PROGRAMS=OFF -DLIBXML2_WITH_MODULES=OFF
 make install -j$(nproc)
 
+echo "----------------------------------------------------------------------------I am using the new build.sh----------------------------------------------------------------------------"
+
 # Build igraph
 cd $SRC/igraph
 mkdir build && cd build
@@ -72,7 +74,7 @@ cd $SRC/igraph
 XML2_FLAGS=`$DEPS_PATH/bin/xml2-config --cflags --libs`
 
 # disabled:  vertex_connectivity_fuzzer
-for TARGET in read_gml_fuzzer read_pajek_fuzzer read_dl_fuzzer read_lgl_fuzzer read_ncol_fuzzer read_graphml_fuzzer read_edgelist_fuzzer read_graphdb_fuzzer bliss_fuzzer edge_connectivity_fuzzer vertex_separators_fuzzer edge_connectivity_fuzzer_attribute
+for TARGET in read_gml_fuzzer read_pajek_fuzzer read_dl_fuzzer read_lgl_fuzzer read_ncol_fuzzer read_graphml_fuzzer read_edgelist_fuzzer read_graphdb_fuzzer bliss_fuzzer edge_connectivity_fuzzer vertex_separators_fuzzer ecfattribute
 do
   $CXX $CXXFLAGS -I$SRC/igraph/build/include -I$SRC/igraph/include -o $TARGET.o -c ./fuzzing/$TARGET.cpp
   $CXX $CXXFLAGS $LIB_FUZZING_ENGINE $TARGET.o -o $OUT/$TARGET ./build/src/libigraph.a $XML2_FLAGS
