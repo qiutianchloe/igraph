@@ -30,6 +30,8 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t *Data, size_t Size) {
     igraph_t graph;
     igraph_vector_int_t edges;
     igraph_set_attribute_table(&igraph_cattribute_table);  
+    igraph_attribute_combination_t* comb = (igraph_attribute_combination_t*)malloc(sizeof(igraph_attribute_combination_t));
+    igraph_attribute_combination_init(comb); 
 
     igraph_set_error_handler(igraph_error_handler_ignore);
     igraph_set_warning_handler(igraph_warning_handler_ignore);
